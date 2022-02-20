@@ -13,8 +13,35 @@ const images = [
   },
 ];
 
-const markup = images.map((image) => `<li><img src = '${image.url}' alt = '${image.alt}'></>`);
+const markup = images.map((image) => `<li><img src = '${image.url}' alt = '${image.alt}' class = "image-styling"></>`);
 
 const parentElement = document.querySelector('ul.gallery');
 
 parentElement.insertAdjacentHTML('afterbegin', markup);
+
+
+parentElement.classList.add("list-styling");
+
+
+/*const changeDisplayButton = parentElement.insertAdjacentHTML(
+  'beforebegin', '<button type="button">Change display</button>'
+);*/
+
+const changeDisplayButton = document.createElement("button");
+changeDisplayButton.type = "button";
+changeDisplayButton.textContent = "Change display";
+parentElement.before(changeDisplayButton);
+
+const changeFlexDir = () => {
+  if (parentElement.classList.contains("list-styling--flex-change")) {
+    parentElement.classList.remove("list-styling--flex-change");
+  } else {
+    parentElement.classList.add("list-styling--flex-change");
+  }
+};
+
+changeDisplayButton.addEventListener("click", changeFlexDir);
+
+
+
+
